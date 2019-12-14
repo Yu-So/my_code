@@ -1,3 +1,5 @@
+#String from GIT
+
 # Список
 a_list = [45,11,234]
 a_list.append(122)
