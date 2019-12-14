@@ -1,4 +1,4 @@
-#String from GIT
+#Downloaded from GIT
 
 # Список
 a_list = [45,11,234]
