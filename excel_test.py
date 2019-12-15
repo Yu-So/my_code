@@ -2,6 +2,15 @@ import openpyxl
 from openpyxl.styles import PatternFill #Подключаем стили для ячеек
 import os
 
+dict_list = []
+with open('dictionary.txt') as f_dictionary:
+     for word_line in f_dictionary: dict_list.append(word_line.split("\n")[0])
+# print (dict_list.count("хerox"))
+
+
+
+
+
 all_files = os.listdir() # Читаем все файлы в директории в список
 xls_files = [] # Объявляем список куда сложим все файлы xlsx
 
@@ -14,8 +23,9 @@ for i in range(0,len(all_files)):
 
 for tmp_file in xls_files:
     wb = openpyxl.load_workbook(filename = tmp_file)
-    for i in wb.sheetnames:
-        ws=wb[i]
+    for k in wb.sheetnames:
+
+        ws=wb[k]
 
         end_row = ws.max_row + 1
         end_column = ws.max_column + 1
@@ -24,10 +34,11 @@ for tmp_file in xls_files:
             for j in range(1, end_column):
                 temp_value = str(ws.cell(row=i, column=j).value)
 
-                if temp_value == "do":
+                if dict_list.count(temp_value.lower()) > 0:
                     ws.cell(row=i, column=end_column).value = "Нашел !!!"
 
                 ws.cell(row=i, column=j).value = temp_value
+                print (tmp_file," ", wb[k]," ", i," ",j)
 
                 # ws.cell(row=i, column=j).fill = PatternFill(fill_type='solid', start_color='ff0000', end_color='ff0000')
                 # Проверить и подсветить в искодном файле
