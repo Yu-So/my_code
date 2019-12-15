@@ -7,10 +7,6 @@ with open('dictionary.txt') as f_dictionary:
      for word_line in f_dictionary: dict_list.append(word_line.split("\n")[0])
 # print (dict_list.count("хerox"))
 
-
-
-
-
 all_files = os.listdir() # Читаем все файлы в директории в список
 xls_files = [] # Объявляем список куда сложим все файлы xlsx
 
@@ -39,6 +35,7 @@ for tmp_file in xls_files:
                     ####
                     if temp_value.lower().find(dict_line_tmp) != -1:
                         ws.cell(row=i, column=end_column).value = "Нашел !!!"
+                        ws.cell(row=i, column=end_column+1).value = dict_line_tmp
                     # Записывать значение никуда не нужно, оно ведь уже содержится в ws
 
 
