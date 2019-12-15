@@ -34,10 +34,14 @@ for tmp_file in xls_files:
             for j in range(1, end_column):
                 temp_value = str(ws.cell(row=i, column=j).value)
 
-                if dict_list.count(temp_value.lower()) > 0:
-                    ws.cell(row=i, column=end_column).value = "Нашел !!!"
 
-                ws.cell(row=i, column=j).value = temp_value
+                for dict_line_tmp in dict_list:
+                    ####
+                    if temp_value.lower().find(dict_line_tmp) != -1:
+                        ws.cell(row=i, column=end_column).value = "Нашел !!!"
+                    # Записывать значение никуда не нужно, оно ведь уже содержится в ws
+
+
                 print (tmp_file," ", wb[k]," ", i," ",j)
 
                 # ws.cell(row=i, column=j).fill = PatternFill(fill_type='solid', start_color='ff0000', end_color='ff0000')
