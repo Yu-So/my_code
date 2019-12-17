@@ -103,7 +103,7 @@ for tmp_file in xls_files:
     # На больших файлах может возникать ошибка поэтому отлавливаем исключением сохранение файла
     # Блок TRY
     try:
-        wb.save(name_with_1_and_xls)
+        wb.save(name_with_1_and_xls)  # Для сохранения нужна только эта операция
     except Exception:
         print('Ошибка при сохранении файла ', name_with_1_and_xls)
     else:
