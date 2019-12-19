@@ -1,5 +1,6 @@
 import openpyxl
 import os
+from openpyxl.utils import get_column_letter
 
 
 
@@ -40,7 +41,7 @@ for tmp_file in xls_files:
 
             for j in range(1, end_column):
                 cell_value = str(ws.cell(row=i, column=j).value) # Читаем в переменную Значение текущей ячейки
-                cell_name =  str(ws.cell(row=i, column=j))       # Читаем в переменную Имя текущей ячейки
+                cell_name =  'Столбец ' + get_column_letter(j)       # Читаем в переменную Имя текущей ячейки
 
 
                 # Количество встречающихся слов из словаря. Первое совпадение пишется в ячейку,
@@ -79,7 +80,9 @@ for tmp_file in xls_files:
 
                             # Запись в ячейку имени ячейки в которой встречается значение из словаря
                             # ниже одна строка
+
                             ws.cell(row=i, column=end_column + occurrence_number + 1).value = cell_name
+
 
 
                             # Запись в ячейку найденного значение из словаря
