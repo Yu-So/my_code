@@ -1,6 +1,8 @@
 import openpyxl
 import os
 
+
+
 dict_list = []
 # Записываем значения словаря в СПИСОК dict_list
 # Ниже блок WITH
@@ -20,11 +22,14 @@ for i in range(0,len(all_files)):
 
 for tmp_file in xls_files:
     wb = openpyxl.load_workbook(filename = tmp_file)
-    for k in wb.sheetnames:
+    for k in wb.sheetnames: # Пербор вкладок книги Excel
 
-        ws=wb[k]
+        ws=wb[k] # Читаем в ws вкладку
 
-        end_row = ws.max_row + 1
+        end_row = ws.max_row + 1 # Для полной обработки файла
+
+        # end_row = ws.max_row + 1 # Для полной обработки файла
+        # end_row = ws.max_row + 1 # Для полной обработки файла
         end_column = ws.max_column + 1
 
         for i in range(1,end_row):
@@ -36,6 +41,7 @@ for tmp_file in xls_files:
             for j in range(1, end_column):
                 cell_value = str(ws.cell(row=i, column=j).value) # Читаем в переменную Значение текущей ячейки
                 cell_name =  str(ws.cell(row=i, column=j))       # Читаем в переменную Имя текущей ячейки
+
 
                 # Количество встречающихся слов из словаря. Первое совпадение пишется в ячейку,
                 # последующие добавляются. Чтобы реже писать в ячейку слово "Нашел !!!".
@@ -56,6 +62,8 @@ for tmp_file in xls_files:
                             # ниже одна строка
                             ws.cell(row=i, column=end_column + occurrence_number + 1).value = cell_name
 
+
+
                             # Запись в ячейку найденного значение из словаря
                             # ниже одна строка
                             ws.cell(row=i, column=end_column + occurrence_number + 2).value = dict_line_tmp
@@ -72,6 +80,7 @@ for tmp_file in xls_files:
                             # Запись в ячейку имени ячейки в которой встречается значение из словаря
                             # ниже одна строка
                             ws.cell(row=i, column=end_column + occurrence_number + 1).value = cell_name
+
 
                             # Запись в ячейку найденного значение из словаря
                             # ниже одна строка
